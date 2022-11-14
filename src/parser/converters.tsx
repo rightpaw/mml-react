@@ -17,6 +17,7 @@ import {
   Row,
   Number,
 } from '../components';
+import { ButtonCTA } from '../components/ButtonCTA';
 
 export type ConvertorType = (tag: MMLTag, children?: ReactElement[]) => ReactElement;
 
@@ -25,6 +26,17 @@ export type ConvertorType = (tag: MMLTag, children?: ReactElement[]) => ReactEle
  * Every converter is passed the MML tag as well as the children (as React nodes)
  */
 export const converters = {
+  buttonCTA: (tag: MMLTag) => {
+    return (
+      <ButtonCTA
+        {...tag.attributes}
+        key={tag.key}
+        text={tag.getText()}
+        name={tag.attributes.name}
+        value={tag.attributes.value}
+      />
+    );
+  },
   button: (tag: MMLTag) => {
     return (
       <Button
